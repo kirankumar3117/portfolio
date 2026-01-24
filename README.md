@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kiran Kumar | Senior Full-Stack Engineer Portfolio
 
-## Getting Started
+![Portfolio Preview](https://softwareguru.in/opengraph-image)
 
-First, run the development server:
+> A high-performance, interactive 3D portfolio built with Next.js 15, React Three Fiber, and TypeScript. Designed to showcase enterprise-grade architecture skills and creative engineering.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Live Demo
+Visit the live site: **[https://softwareguru.in](https://softwareguru.in)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **3D Interactive Hero:** Real-time fluid simulation using `react-three-fiber` and custom shaders (MeshDistortMaterial).
+- **"Local Brain" AI Agent:** A custom-built, zero-latency Chat Widget that acts as a digital twin. It uses heuristic logic to answer recruiter questions instantly without external LLM costs.
+- **Enterprise Project Showcase:** A specialized component design (`ProjectShowcase.tsx`) to handle NDA-protected work using "Confidential" badges and abstract visualization.
+- **Engineering Journey:** A vertical timeline component replacing standard release notes to tell the story of my transition from Mechanical Engineering to Lead Developer.
+- **Serverless Contact Form:** Integrated with **EmailJS** to send notifications (Admin) and auto-replies (Visitor) directly from the client side without a backend server.
+- **Advanced SEO:**
+  - Dynamic Open Graph Image Generation (`opengraph-image.tsx`)
+  - Automatic Sitemap & Robots.txt generation
+  - JSON-LD Structured Data
+  - Dynamic Favicon generation (`icon.tsx`)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework:** [Next.js 15 (App Router)](https://nextjs.org/)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **3D Graphics:** React Three Fiber / Drei
+- **Email Service:** EmailJS (Browser SDK)
+- **Icons:** Lucide React
+- **Deployment:** Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚡ Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/kirankumar3117/portfolio.git](https://github.com/kirankumar3117/portfolio.git)
+   cd portfolio
