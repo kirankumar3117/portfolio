@@ -91,6 +91,7 @@ const CONVERSATION_FLOWS = {
   },
 
   default: {
+    trigger: [],
     responses: [
       "Hmm, I want to give you the best info! 🤔\n\nI can tell you about:\n• **NEWGAS** - His crown jewel project\n• **Tech Stack** - React, Vue, Python, and more\n• **The Pivot** - Mechanical engineer to software lead\n• **Availability** - He's open to remote/contract work\n• **Contact** - Get in touch directly\n\nWhat interests you most?"
     ],
