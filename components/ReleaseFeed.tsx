@@ -16,7 +16,7 @@ const MILESTONES = [
     changes: [
       "Building 'NEWGAS' ERP for 1,000+ distributors",
       "Designing Offline-First architectures with Pinia",
-      "Mentoring junior developers on React patterns"
+      "Mentoring junior developers on Vue patterns"
     ]
   },
   {

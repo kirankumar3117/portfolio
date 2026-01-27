@@ -10,7 +10,7 @@ const PROJECTS = [
     title: "Industrial Logistics ERP",
     category: "Enterprise Architecture",
     description: "A mission-critical platform managing LPG distribution for 1,000+ active agencies. Engineered a custom 'Multi-Tab State Synchronization' engine to prevent data corruption during high-volume workflows.",
-    tech: ["Next.js", "TypeScript", "Pinia", "Python FastAPI", "Redis"],
+    tech: ["Nuxt.js", "TypeScript", "Pinia", "Element-plus"],
     isConfidential: true, // Hides Code links
     stats: "50k+ Daily Txns",
     icon: Database,

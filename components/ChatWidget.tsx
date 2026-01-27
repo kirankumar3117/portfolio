@@ -274,7 +274,7 @@ export default function KiranAITwin() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+    <div className="fixed bottom-6 right-6 z-[1000] flex flex-col items-end font-sans">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -433,6 +433,18 @@ export default function KiranAITwin() {
 
       {/* Floating Button */}
       <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ 
+          scale: 1, 
+          opacity: 1,
+          y: [0, -20, 20, -15, 0] // 1. The "Jump" animation keyframes
+        }}
+        transition={{ 
+          type: "spring",
+          damping: 20,
+          stiffness: 300,
+          y: { delay: 1.5, duration: 1, times: [0, 0.2, 0.5, 0.8, 1] } // Delays the jump by 1.5s
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
@@ -460,11 +472,16 @@ export default function KiranAITwin() {
               className="relative"
             >
               <MessageSquare size={26} />
+              
+              {/* 2. The "1" Notification Badge (Replaces the green dot) */}
               <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-blue-700"
-              />
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 2.2, type: "spring" }} // Pops in right after the jump
+                className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-[#0a0a0c] shadow-sm z-10"
+              >
+                1
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
