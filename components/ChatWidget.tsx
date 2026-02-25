@@ -12,24 +12,32 @@ const CONVERSATION_FLOWS = {
   welcome: {
     trigger: ['hi', 'hello', 'hey', 'start', 'sup', 'yo'],
     responses: [
-      "Hey there! 👋 I'm Kiran's AI twin—think of me as your friendly guide to his engineering journey.\n\nI can walk you through his **crown jewel project** (NEWGAS), dive into his **mechanical-to-software pivot story**, or explore what makes him tick as an engineer.\n\nWhat sparks your curiosity?",
-      "Welcome! 🚀 Great timing—Kiran's currently open for high-impact remote roles and independent projects.\n\nI know everything about his work: from architecting **massive-scale ERP systems** to his philosophy on clean code.\n\nWhere should we start?"
+      "Hey there! 👋 I'm Kiran's AI twin—think of me as your friendly guide to his engineering journey.\n\nI can walk you through his **crown jewel project** (Smart Kirana), his massive **logistics platform** (NEWGAS), dive into his **mechanical-to-software pivot story**, or explore what makes him tick as an engineer.\n\nWhat sparks your curiosity?",
+      "Welcome! 🚀 Great timing—Kiran's currently open for high-impact remote roles and independent projects.\n\nI know everything about his work: from architecting **hyper-local multi-app ecosystems** to his philosophy on clean code.\n\nWhere should we start?"
     ],
-    chips: ["Tell me about NEWGAS", "The Pivot Story", "Tech Stack & Skills", "Is he available?"]
+    chips: ["Tell me about Smart Kirana", "What is NEWGAS?", "Tech Stack & Skills", "Is he available?"]
+  },
+
+  smart_kirana: {
+    trigger: ['smart', 'kirana', 'grocery', 'chitty', 'project', 'crown jewel', 'biggest', 'main project', 'react native', 'rn', 'ecosystem'],
+    responses: [
+      "Ah, Smart Kirana—Kiran's **magnum opus**! ��🔥\n\nImagine building the digital backbone for the hyper-local Indian grocery market. This isn't just a web app; it's a full **multi-app ecosystem**.\n\n**The Challenge**: The market relies heavily on 'chitty' (handwritten lists) and WhatsApp. Traditional rigid digital catalogs caused massive friction for shopkeepers.\n\n**Kiran's Solution**: He architected a scalable platform featuring **React Native apps** (for Customers & Shopkeepers) and **Next.js web portals** (for Admins), all backed by a high-performance **FastAPI / PostgreSQL** engine.\n\n**Impact**: It digitizes handwritten lists via upcoming AI-OCR, utilizes OTP JWT Auth tailored for Indian consumers, and uses spatial data (PostGIS) for accurate shop discovery.\n\nThis project showcases his ability to **engineer complex ecosystems, not just write isolated code**."
+    ],
+    chips: ["How does the backend work?", "What is NEWGAS?", "Tech stack details", "Contact Kiran"]
   },
 
   newgas: {
-    trigger: ['newgas', 'lpg', 'erp', 'project', 'crown jewel', 'biggest', 'main project'],
+    trigger: ['newgas', 'lpg', 'erp', 'gas', 'logistics', 'multi-tab', 'nuxt', 'pinia'],
     responses: [
-      "Ah, NEWGAS—Kiran's **magnum opus**! 🔥\n\nImagine building the logistics backbone for **thousands of LPG distributors** (think HP Gas scale). This isn't a startup MVP—it's industrial-grade infrastructure.\n\n**The Challenge**: Distributors needed to juggle multiple orders, reports, and inventory checks simultaneously—traditional web apps would lose data on tab switches.\n\n**Kiran's Solution**: He architected a **multi-tab internal routing system** using Nuxt.js + Pinia that preserves state across tabs. Revolutionary for their workflow.\n\n**Performance**: Slashed UI bundle size by **15%** through custom tree-shaking and lazy-loading—critical when users run this on lower-end industrial hardware.\n\nThis project alone showcases his ability to **engineer systems, not just write code**."
+      "NEWGAS is a massive **mission-critical logistics platform** Kiran built for Blue Ray Automation. 🚚💨\n\nImagine handling LPG distribution for **thousands of agencies** like HP Gas. It's industrial-grade infrastructure.\n\n**The Challenge**: Distributors juggled multiple orders and inventory checks simultaneously. Standard web apps would lose data when switching tabs, crippling productivity.\n\n**Kiran's Solution**: He architected a custom **multi-tab internal routing system** using Nuxt.js + Pinia that perfectly preserves state across tabs. It revolutionized their workflow.\n\n**Performance**: He rigorously optimized the app, slashing the UI bundle size by **15%** for smooth performance on lower-end industrial hardware.\n\nIt's a prime example of his deep focus on **user-centric systems engineering**."
     ],
-    chips: ["How does multi-tab routing work?", "Other achievements?", "Tech stack details", "Contact Kiran"]
+    chips: ["Tell me about Smart Kirana", "Technical Architecture", "The Pivot Story", "Contact Kiran"]
   },
 
   technical_deep: {
-    trigger: ['how does', 'multi-tab', 'routing', 'technical', 'architecture', 'pinia', 'nuxt'],
+    trigger: ['how does', 'backend', 'spatial', 'fastapi', 'technical', 'architecture', 'database', 'postgres', 'postgis'],
     responses: [
-      "Great question! Here's the technical magic:\n\n**Problem**: Standard SPAs lose state when users open new tabs or navigate between sections. For distributors managing 10+ orders, this was a dealbreaker.\n\n**Solution**: Kiran built a **persistent state layer** using Pinia with localStorage sync. Each tab maintains its own route context while sharing critical global state (user auth, inventory).\n\n**Key Innovation**: Custom middleware that serializes/deserializes component state on route changes, allowing seamless context switching.\n\nThis is **systems thinking** in action—coming from mechanical engineering, he views codebases like machines where every part must work friction-free.\n\nWant to see his other technical wins?"
+      "Great question! Here's the technical magic behind Smart Kirana:\n\n**Database & Discovery**: He implemented PostgreSQL with **Spatial Data (PostGIS)** to handle latitude/longitude mapping, enabling exact radius-based shop filtering for hyper-local delivery.\n\n**Security & Auth**: recognizing that Indian consumers prefer phone numbers over emails, he discarded standard auth for a custom **Phone OTP JWT system** combined with granular RBAC to ensure strict data isolation between vendors.\n\n**File Processing**: He set up a scalable multipart upload architecture specifically tuned to process and ingest images of handwritten 'chitty' lists seamlessly.\n\nThis is **systems thinking** in action—coming from mechanical engineering, he views software architectures like machines where every sub-system must work friction-free.\n\nWant to see his other technical wins?"
     ],
     chips: ["Yes, show me more", "What's his tech stack?", "RBAC security project", "Hire Kiran"]
   },
@@ -45,15 +53,15 @@ const CONVERSATION_FLOWS = {
   skills: {
     trigger: ['skill', 'stack', 'tech', 'technology', 'react', 'vue', 'python', 'node', 'expertise'],
     responses: [
-      "Kiran's arsenal is built for **high-performance, scalable systems**:\n\n**Frontend Mastery**:\n• React.js (Next.js) & Vue.js (Nuxt.js)—expert-level\n• TypeScript, JavaScript—clean, maintainable code\n• State Management: Redux, Pinia, Zustand\n• UI: Ant Design, Tailwind CSS, SCSS\n\n**Backend Power**:\n• Python (FastAPI)—RESTful APIs, high-concurrency\n• Node.js—event-driven architectures\n• Database: PostgreSQL, MongoDB\n\n**Specializations**:\n• RBAC security systems\n• Performance optimization (bundle-splitting, lazy-loading)\n• Complex state management\n• Industrial-scale logistics platforms\n\nHe doesn't just use these tools—he **engineers solutions** with them."
+      "Kiran's arsenal is built for **high-performance, scalable systems**:\n\n**Frontend Mastery**:\n• React.js (Next.js) & React Native—expert-level\n• Vue.js (Nuxt.js)\n• State Management: Pinia, Redux, Zustand\n• Real-time 3D: React Three Fiber\n\n**Backend Power**:\n• Python (FastAPI)—RESTful APIs, high-concurrency\n• Node.js—event-driven architectures\n• Database: PostgreSQL (PostGIS), MongoDB\n\n**Specializations**:\n• Multi-platform app ecosystems\n• RBAC security systems\n• Performance optimization & Spatial Data\n\nHe doesn't just use these tools—he **engineers solutions** with them."
     ],
-    chips: ["NEWGAS project details", "Work availability", "The pivot story", "Download resume"]
+    chips: ["Smart Kirana details", "Work availability", "The pivot story", "Download resume"]
   },
 
   pivot_story: {
     trigger: ['pivot', 'story', 'background', 'mechanical', 'journey', 'how did', 'education', 'masai'],
     responses: [
-      "This is where it gets inspiring! 💡\n\n**The Setup**: Kiran graduated as a **Mechanical Engineer** in 2023. But while his peers were heading to factories, he realized his passion was in the **logic and scalability of software**.\n\n**The Grit**: He dove into a **1200+ hour intensive MERN bootcamp** at Masai School—basically compressed CS education while competing against CS grads.\n\n**The Result**: Within 3 years, he's not just competing—he's **leading them**. Promoted to Lead Developer, Employee of the Month 2024, architecting systems that handle thousands of concurrent users.\n\n**His Edge**: That mechanical engineering background? It's his superpower. He doesn't just \"write code\"—he **engineers systems** where every component is optimized for performance.\n\nFrom machines to software machines. Pretty cool, right?"
+      "This is where it gets inspiring! 💡\n\n**The Setup**: Kiran graduated as a **Mechanical Engineer** in 2023. But while his peers were heading to factories, he realized his passion was in the **logic and scalability of software**.\n\n**The Grit**: He dove into a **1200+ hour intensive MERN bootcamp** at Masai School—basically compressed CS education while competing against CS grads.\n\n**The Result**: Within 3 years, he's not just competing—he's **leading them**. Promoted to Lead Developer, Employee of the Month 2024, architecting complex, multi-app ecosystems.\n\n**His Edge**: That mechanical engineering background? It's his superpower. He doesn't just \"write code\"—he **engineers systems** where every component is optimized for performance.\n\nFrom machines to software machines. Pretty cool, right?"
     ],
     chips: ["What makes him different?", "Current availability", "See his achievements", "Get in touch"]
   },
@@ -61,15 +69,15 @@ const CONVERSATION_FLOWS = {
   achievements: {
     trigger: ['achievement', 'award', 'recognition', 'accomplishment', 'employee', 'promoted'],
     responses: [
-      "Kiran's track record speaks volumes:\n\n🏆 **Employee of the Month (2024)** - Blue Ray Automation\n  Recognized for exceptional delivery and technical leadership\n\n⚡ **Rapid Promotion** - Lead Developer in 3 years\n  Started as a junior, now mentoring teams and architecting enterprise systems\n\n🔒 **Security Architecture** - Built custom RBAC system\n  Secured sensitive HRMS payroll data across multiple admin levels\n\n📊 **Performance Optimization** - 15% bundle reduction\n  Made industrial-scale apps blazing fast on lower-end hardware\n\n🎯 **Systems Architecture** - NEWGAS multi-tab routing\n  Solved a critical UX problem affecting thousands of daily users\n\nThese aren't just bullet points—they're proof of **high-impact engineering**."
+      "Kiran's track record speaks volumes:\n\n🏆 **Employee of the Month (2024)** - Blue Ray Automation\n  Recognized for exceptional delivery and technical leadership\n\n⚡ **Rapid Promotion** - Lead Developer in 3 years\n  Started as a junior, now mentoring teams and architecting enterprise systems\n\n🛒 **Systems Architecture** - Built Smart Kirana ecosystem\n  Designed a React Native & Next.js platform powered by FastAPI\n\n🚀 **Logistics Infrastructure** - Architected NEWGAS ERP\n  Solved complex multi-tab state persistence for thousands of daily users\n\n🔒 **Security Architecture** - Built custom RBAC system\n  Secured sensitive HRMS payroll data across multiple admin levels\n\nThese aren't just bullet points—they're proof of **high-impact engineering**."
     ],
-    chips: ["Work philosophy", "What's he looking for?", "Tech expertise", "Schedule a call"]
+    chips: ["Work philosophy", "What's NEWGAS?", "Tech expertise", "Schedule a call"]
   },
 
   philosophy: {
     trigger: ['philosophy', 'approach', 'values', 'thinking', 'different', 'edge', 'what makes'],
     responses: [
-      "Kiran's engineering philosophy is refreshingly clear:\n\n**\"Engineering First, Code Second\"**\nHe views software like a mechanical system—every component must be optimized for friction-free operation.\n\n**Core Values**:\n✨ **Performance-Obsessed** - If it's not fast, it's not done\n🏗️ **Clean Architecture** - \"Unmaintainable code is Day 1 technical debt\"\n🎯 **Business-Aware** - Technical choices must drive business outcomes\n🔄 **Systems Thinking** - Understanding how all parts interact\n\n**In Practice**:\nWhen he chooses Redux over Context API, it's not preference—it's because the app's complexity demands predictable state flow. When he implements code-splitting, it's because faster load times = higher user productivity.\n\nHe bridges the gap between **engineering excellence** and **business impact**."
+      "Kiran's engineering philosophy is refreshingly clear:\n\n**\"Engineering First, Code Second\"**\nHe views software like a mechanical system—every component must be optimized for friction-free operation.\n\n**Core Values**:\n✨ **Performance-Obsessed** - If it's not fast, it's not done\n🏗️ **Clean Architecture** - \"Unmaintainable code is Day 1 technical debt\"\n🎯 **Business-Aware** - Technical choices must drive business outcomes\n🔄 **Systems Thinking** - Understanding how all parts interact\n\nHe bridges the gap between **engineering excellence** and **business impact**."
     ],
     chips: ["Career goals", "Contact information", "See projects", "Availability"]
   },
@@ -77,7 +85,7 @@ const CONVERSATION_FLOWS = {
   availability: {
     trigger: ['available', 'hire', 'open', 'looking', 'freelance', 'contract', 'remote', 'job'],
     responses: [
-      "Perfect timing! Kiran is **actively open** to high-impact opportunities:\n\n✅ **Primary Focus**: Senior Frontend / Full-Stack Engineering roles\n📍 **Work Model**: 100% Remote, Hybrid, or Independent/Contract\n🌍 **Location**: Rajamahendravaram, India (but fully location-agnostic)\n\n**Dream Projects**:\n• Complex SaaS platforms\n• Fintech engines\n• Logistics/supply chain systems\n• Anything requiring high-concurrency + deep state management\n\n**Tech Stack Preference**:\n• React/Next.js or Vue/Nuxt.js\n• Python (FastAPI) or Node.js backends\n• PostgreSQL, MongoDB\n\nHe's not just looking for a job—he's looking for **engineering challenges that matter**."
+      "Perfect timing! Kiran is **actively open** to high-impact opportunities:\n\n✅ **Primary Focus**: Senior Frontend / Full-Stack Engineering roles\n📍 **Work Model**: 100% Remote, Hybrid, or Independent/Contract\n🌍 **Location**: Rajamahendravaram, India (but fully location-agnostic)\n\n**Dream Projects**:\n• Complex multi-app ecosystems\n• Fintech engines\n• Logistics/supply chain systems\n• Anything requiring high-concurrency + deep state management\n\n**Tech Stack Preference**:\n• React/Next.js or React Native\n• Python (FastAPI) or Node.js backends\n• PostgreSQL, MongoDB\n\nHe's not just looking for a job—he's looking for **engineering challenges that matter**."
     ],
     chips: ["Schedule a call", "Download CV", "Email Kiran", "GitHub profile"]
   },
@@ -93,9 +101,9 @@ const CONVERSATION_FLOWS = {
   default: {
     trigger: [],
     responses: [
-      "Hmm, I want to give you the best info! 🤔\n\nI can tell you about:\n• **NEWGAS** - His crown jewel project\n• **Tech Stack** - React, Vue, Python, and more\n• **The Pivot** - Mechanical engineer to software lead\n• **Availability** - He's open to remote/contract work\n• **Contact** - Get in touch directly\n\nWhat interests you most?"
+      "Hmm, I want to give you the best info! 🤔\n\nI can tell you about:\n• **Smart Kirana** - His multi-app ecosystem project\n• **NEWGAS ERP** - His massive logistics platform\n• **Tech Stack** - React Native, FastApi, PostgreSQL, and more\n• **The Pivot** - Mechanical engineer to software lead\n• **Availability** - He's open to remote/contract work\n• **Contact** - Get in touch directly\n\nWhat interests you most?"
     ],
-    chips: ["NEWGAS project", "Tech skills", "Pivot story", "Contact Kiran"]
+    chips: ["Smart Kirana project", "NEWGAS project", "Pivot story", "Contact Kiran"]
   }
 };
 
