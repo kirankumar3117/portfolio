@@ -192,22 +192,49 @@ export default function KiranAITwin() {
     setInput('');
     setIsTyping(true);
 
-    // Simulate thinking delay
-    await new Promise(resolve => setTimeout(resolve, 1200 + Math.random() * 800));
+    try {
+      // 1. Try real AI backend first
+      const res = await fetch('/api/chat', { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text.trim() }) 
+      });
 
-    const matchedFlow = findBestResponse(text);
-    const response = Array.isArray(matchedFlow.responses)
-      ? matchedFlow.responses[Math.floor(Math.random() * matchedFlow.responses.length)]
-      : matchedFlow.responses;
+      if (!res.ok) {
+         throw new Error('Fallback to heuristic engine');
+      }
 
-    const botMessage = {
-      id: Date.now() + 1,
-      text: response,
-      sender: 'bot',
-      chips: matchedFlow.chips
-    };
+      const data = await res.json();
+      
+      const botMessage = {
+        id: Date.now() + 1,
+        text: data.text,
+        sender: 'bot',
+        chips: ["Tell me more", "Tech Stack", "Contact Kiran"] // Give default chips for AI outputs
+      };
 
-    setMessages(prev => [...prev, botMessage]);
+      setMessages(prev => [...prev, botMessage]);
+
+    } catch (error) {
+       // 2. Fallback to heuristic system (Zero external cost / handles missing API keys)
+       // Simulate thinking delay so it still feels natural
+       await new Promise(resolve => setTimeout(resolve, 1200 + Math.random() * 800));
+
+       const matchedFlow = findBestResponse(text);
+       const response = Array.isArray(matchedFlow.responses)
+         ? matchedFlow.responses[Math.floor(Math.random() * matchedFlow.responses.length)]
+         : matchedFlow.responses;
+
+       const botMessage = {
+         id: Date.now() + 1,
+         text: response,
+         sender: 'bot',
+         chips: matchedFlow.chips
+       };
+
+       setMessages(prev => [...prev, botMessage]);
+    }
+
     setIsTyping(false);
   };
 
