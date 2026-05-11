@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Lint · Type-Check · Build
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ─────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Node.js setup ────────────────────────────────────────────────────
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # ── 3. Install dependencies ─────────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Lint ─────────────────────────────────────────────────────────────
+      # Uses the "lint" script defined in package.json ("eslint")
+      - name: Run ESLint
+        run: npm run lint
+
+      # ── 5. TypeScript type-check ────────────────────────────────────────────
+      # next build already type-checks, but this gives faster, isolated feedback
+      - name: TypeScript type-check
+        run: npx tsc --noEmit
+
+      # ── 6. Production build ──────────────────────────────────────────────────
+      # Verifies that the Next.js app compiles cleanly end-to-end.
+      # GEMINI_API_KEY is not required for a build-only check (the heuristic
+      # fallback handles its absence at runtime), so no secret injection needed.
+      - name: Build
+        run: npm run build

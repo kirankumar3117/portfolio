@@ -5,8 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Lock, ChevronRight, X, CheckCircle2 } from 'lucide-react';
 import { PROJECTS, Project } from '@/data/projects';
 
+const INITIAL_COUNT = 3;
+
 export default function ProjectShowcase() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, INITIAL_COUNT);
 
   // Prevent background scrolling when modal is open
   if (typeof window !== 'undefined') {
@@ -35,7 +40,7 @@ export default function ProjectShowcase() {
 
           {/* Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project, index) => (
+            {visibleProjects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -122,6 +127,26 @@ export default function ProjectShowcase() {
               </motion.div>
             ))}
           </div>
+
+          {/* View More / Less */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-16"
+          >
+            <button
+              onClick={() => setShowAll(prev => !prev)}
+              className="group flex items-center gap-3 px-8 py-4 border border-white/10 hover:border-purple-500/50 rounded-full text-gray-400 hover:text-white text-sm font-semibold transition-all duration-300 hover:bg-purple-500/10 backdrop-blur-sm"
+            >
+              {showAll ? (
+                <>Show Less<ChevronRight size={16} className="rotate-[-90deg] group-hover:-translate-y-0.5 transition-transform" /></>
+              ) : (
+                <>View All {PROJECTS.length} Projects <ChevronRight size={16} className="rotate-90 group-hover:translate-y-0.5 transition-transform" /></>
+              )}
+            </button>
+          </motion.div>
+
         </div>
       </section>
 

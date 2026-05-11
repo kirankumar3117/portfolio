@@ -5,6 +5,21 @@ import { GitCommit, Star, Trophy, Rocket, Briefcase, GraduationCap } from 'lucid
 
 // --- YOUR CAREER STORY ---
 const MILESTONES = [
+  // ── NEW MILESTONE ──────────────────────────────────────────────────────────
+  {
+    version: "2026",
+    date: "Feb 2026",
+    title: "Speaker at VueVerse Connect 2026",
+    tag: "Public Speaking",
+    icon: Star,
+    color: "text-violet-400",
+    description: "Delivered a session titled \"From Idea to Impact: Building a Real-World Product End to End\" at VueVerse Connect 2026 in Hyderabad — covering product ideation, full-stack architecture decisions, and shipping to production.",
+    changes: [
+      "Presented to a live audience of 200+ Vue.js developers in Hyderabad",
+      "Covered end-to-end product lifecycle from problem discovery to production deployment",
+      "Demonstrated real-world architecture patterns from Smart Kirana and SHIPLOG builds"
+    ]
+  },
   {
     version: "Current Focus",
     date: "Present",
