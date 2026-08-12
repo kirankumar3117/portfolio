@@ -38,7 +38,7 @@ const FLOW_DESCRIPTIONS: Record<string, string> = {
 };
 
 let extractor: FeatureExtractionPipeline | null = null;
-let flowEmbeddings: Record<string, number[]> = {};
+const flowEmbeddings: Record<string, number[]> = {};
 let isReady = false;
 let isLoading = false;
 

@@ -44,14 +44,17 @@ export default function ProjectConstellation({ onExplore }: ProjectConstellation
             const to = NODE_POSITIONS[b];
             if (!from || !to) return null;
             return (
-              <line
+              <motion.line
                 key={i}
                 x1={`${from.x}%`}
                 y1={`${from.y}%`}
                 x2={`${to.x}%`}
                 y2={`${to.y}%`}
-                stroke="rgba(255,255,255,0.12)"
-                strokeWidth={1}
+                strokeWidth={1.5}
+                initial={{ stroke: 'rgba(255,255,255,0.12)' }}
+                whileInView={{ stroke: '#f97316' }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
               />
             );
           })}

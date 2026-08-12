@@ -12,6 +12,13 @@ import {
   isSemanticReady,
 } from '@/lib/semantic-matcher';
 
+interface ChatMessage {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  chips?: string[];
+}
+
 // ==================== CONVERSATION ENGINE ====================
 const CONVERSATION_FLOWS = {
   welcome: {
@@ -184,7 +191,7 @@ const TypingIndicator = () => (
 // ==================== MAIN COMPONENT ====================
 export default function KiranAITwin() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [aiReady, setAiReady] = useState(false);
@@ -235,7 +242,7 @@ export default function KiranAITwin() {
   const handleSend = async (text = input) => {
     if (!text.trim()) return;
 
-    const userMessage = {
+    const userMessage: ChatMessage = {
       id: Date.now(),
       text: text.trim(),
       sender: 'user'
@@ -259,7 +266,7 @@ export default function KiranAITwin() {
 
       const data = await res.json();
       
-      const botMessage = {
+      const botMessage: ChatMessage = {
         id: Date.now() + 1,
         text: data.text,
         sender: 'bot',
@@ -268,7 +275,7 @@ export default function KiranAITwin() {
 
       setMessages(prev => [...prev, botMessage]);
 
-    } catch (error) {
+    } catch {
       await new Promise(resolve => setTimeout(resolve, 1200 + Math.random() * 800));
 
       // Try semantic matching first, fall back to keyword heuristic
@@ -281,7 +288,7 @@ export default function KiranAITwin() {
         ? matchedFlow.responses[Math.floor(Math.random() * matchedFlow.responses.length)]
         : matchedFlow.responses;
 
-      const botMessage = {
+      const botMessage: ChatMessage = {
         id: Date.now() + 1,
         text: response,
         sender: 'bot',
@@ -382,7 +389,7 @@ export default function KiranAITwin() {
                   </div>
 
                   <div>
-                    <h4 className="text-white font-bold text-sm mb-0.5">Kiran's AI Twin</h4>
+                    <h4 className="text-white font-bold text-sm mb-0.5">Kiran&apos;s AI Twin</h4>
                     <p className="text-[11px] text-gray-400 font-medium">Lead Full-Stack Engineer</p>
                     <div className="flex items-center gap-2 mt-1">
                       <div className="flex items-center gap-1 bg-green-500/10 px-1.5 py-0.5 rounded-full border border-green-500/10">
