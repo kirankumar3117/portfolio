@@ -28,3 +28,21 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* The custom cursor hides the native pointer globally; text fields still
+   need their native caret/cursor so it's clear where you're typing. */
+input,
+textarea,
+[contenteditable='true'] {
+  cursor: text;
+}
+
+@keyframes disc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-disc-spin {
+  animation: disc-spin 6s linear infinite;
+}
