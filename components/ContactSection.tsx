@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MapPin, Linkedin, Github, ExternalLink, Phone, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, ExternalLink, CheckCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // --- SUCCESS POPUP COMPONENT ---
@@ -31,7 +31,7 @@ const SuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
           <p className="text-gray-400 mb-6">
-            Thanks for reaching out. I've received your details and will get back to you shortly.
+            Thanks for reaching out. I&apos;ve received your details and will get back to you shortly.
           </p>
           <button
             onClick={onClose}
@@ -95,7 +95,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden" id="contact">
+    <section className="py-32 relative overflow-hidden" id="contact">
       <SuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
 
       {/* Background decoration */}
@@ -109,10 +109,27 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold text-white mb-6">Let's create something <br /> <span className="text-purple-500">extraordinary.</span></h2>
-          <p className="text-gray-400 text-lg mb-10">
-            Whether you have a project in mind or just want to say hi, I'm always open to discussing new ideas.
+          <h2 className="text-5xl font-bold text-white mb-6">Let&apos;s create something <br /> <span className="text-purple-500">extraordinary.</span></h2>
+          <p className="text-gray-400 text-lg mb-8">
+            Whether you have a project in mind or just want to say hi, I&apos;m always open to discussing new ideas.
           </p>
+
+          <div className="flex flex-wrap gap-2 mb-10">
+            {[
+              'Full-Stack Engineering',
+              'Frontend Architecture',
+              'Product Development',
+              'Technical Consulting',
+              'Interesting Engineering Projects',
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-gray-300"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
 
           <div className="space-y-6">
             <a href="mailto:Kirankumar.challagiri@gmail.com" className="flex items-center gap-4 text-gray-300 hover:text-white transition group">
@@ -137,6 +154,17 @@ export default function ContactSection() {
             <a href="https://github.com/kirankumar3117" target="_blank" className="p-4 border border-white/10 rounded-full hover:bg-white hover:text-black transition duration-300 text-gray-400">
               <Github size={20} />
             </a>
+            {process.env.NEXT_PUBLIC_RESUME_URL && (
+              <a
+                href={process.env.NEXT_PUBLIC_RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="hover"
+                className="flex items-center gap-2 rounded-full border border-white/10 px-5 text-sm font-semibold text-gray-400 transition duration-300 hover:bg-purple-500 hover:border-purple-500 hover:text-white"
+              >
+                Resume
+              </a>
+            )}
           </div>
         </motion.div>
 

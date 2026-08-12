@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/private/', // Just in case you add private pages later
+            disallow: ['/private/', '/api/', '/spotify/callback'],
         },
         sitemap: 'https://softwareguru.in/sitemap.xml',
     };
