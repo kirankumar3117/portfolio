@@ -101,10 +101,10 @@ function CentralCore({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 const CODE_FRAGMENTS: { text: string; position: [number, number, number] }[] = [
-  { text: 'const build = () => ship();', position: [-3.4, 1.6, -2] },
-  { text: 'git commit -m "ship it"', position: [3.6, -1.2, -1.5] },
-  { text: 'while (learning) { grow(); }', position: [-2.8, -2, -3] },
-  { text: '// TODO: nothing. it works.', position: [3.2, 2.1, -2.5] },
+  // { text: 'const build = () => ship();', position: [-3.4, 1.6, -2] },
+  // { text: 'git commit -m "ship it"', position: [3.6, -1.2, -1.5] },
+  // { text: 'while (learning) { grow(); }', position: [-2.8, -2, -3] },
+  // { text: '// TODO: nothing. it works.', position: [3.2, 2.1, -2.5] },
 ];
 
 function CodeFragments({ count }: { count: number }) {
