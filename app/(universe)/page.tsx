@@ -22,6 +22,30 @@ const results = [
 ];
 
 const resumeHref = '/Kiran-Kumar-Challagiri-Resume.pdf';
+const homeUrl = new URL('/', profile.url);
+const personId = new URL('#person', homeUrl).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': new URL('#website', homeUrl).href,
+      name: profile.siteName,
+      alternateName: homeUrl.hostname,
+      url: homeUrl.href,
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: profile.name,
+      url: homeUrl.href,
+      jobTitle: profile.role,
+      worksFor: { '@type': 'Organization', name: 'Blue Ray Automation' },
+      sameAs: [profile.github, profile.linkedin],
+    },
+  ],
+};
 
 function Portrait() {
   return (
@@ -45,6 +69,10 @@ function Portrait() {
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+      />
       <a className={styles.skipLink} href="#main">Skip to content</a>
       <header className={styles.header}>
         <div className={`${styles.shell} ${styles.headerInner}`}>
@@ -120,7 +148,7 @@ export default function HomePage() {
       </main>
       <footer className={styles.footer}>
         <div className={styles.shell}>
-          <span>{profile.name}</span>
+          <span>{profile.siteName}</span>
           <a href="#home">Back to top</a>
         </div>
       </footer>

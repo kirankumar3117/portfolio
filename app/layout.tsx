@@ -17,11 +17,11 @@ const plexMono = localFont({
   display: 'swap',
 });
 
-const title = `${profile.name} | ${profile.role}`;
+const title = `${profile.siteName} | ${profile.name}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.url),
-  title: { default: title, template: `%s | ${profile.name}` },
+  title: { default: title, template: `%s | ${profile.siteName}` },
   description: profile.description,
   alternates: { canonical: '/' },
   authors: [{ name: profile.name, url: profile.url }],
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title,
     description: profile.description,
     url: '/',
-    siteName: profile.name,
+    siteName: profile.siteName,
     locale: 'en_IN',
     type: 'profile',
   },
@@ -40,26 +40,10 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: profile.name,
-  url: profile.url,
-  jobTitle: profile.role,
-  worksFor: { '@type': 'Organization', name: 'Blue Ray Automation' },
-  sameAs: [profile.github, profile.linkedin],
-};
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${plexMono.variable}`}>
-      <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
-        />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

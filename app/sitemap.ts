@@ -1,14 +1,10 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { profile } from '@/data/profile';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://softwareguru.in';
-
     return [
         {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 1.0,
+            url: new URL('/', profile.url).href,
         }
     ];
 }

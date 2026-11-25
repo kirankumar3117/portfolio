@@ -1,4 +1,5 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { profile } from '@/data/profile';
 
 export default function robots(): MetadataRoute.Robots {
     return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/private/', '/api/', '/spotify/callback'],
         },
-        sitemap: 'https://softwareguru.in/sitemap.xml',
+        sitemap: new URL('/sitemap.xml', profile.url).href,
     };
 }
