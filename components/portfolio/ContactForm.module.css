@@ -1,0 +1,97 @@
+.form {
+  min-width: 0;
+  padding: clamp(1.125rem, 3.2vw, 2rem);
+  border: 1px solid #595650;
+  border-radius: 1.4rem;
+  background: #242320;
+  color: #f5f4f0;
+  color-scheme: dark;
+}
+
+.fields {
+  display: grid;
+  min-inline-size: 0;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  min-width: 0;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.field :is(input, textarea) {
+  width: 100%;
+  min-height: 2.875rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #77736a;
+  border-radius: 0.5rem;
+  background: #171715;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.field textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.field :is(input, textarea):focus-visible,
+.submit:focus-visible {
+  outline-color: #ffaea2;
+  outline-offset: 3px;
+}
+
+.submit {
+  min-height: 3rem;
+  width: fit-content;
+  padding: 0.625rem 1.1rem;
+  border-radius: 0.55rem;
+  background: #f5f4f0;
+  color: #171715;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit:hover:enabled {
+  background: #ffc6be;
+}
+
+.fields:disabled .submit {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.feedback {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.feedback p:not(:empty) {
+  margin: 0.875rem 0 0;
+}
+
+.error {
+  color: #ffb7aa;
+}
+
+@media (max-width: 30rem) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,60 +1,130 @@
-import type { Metadata } from 'next';
-import AboutSection from '@/components/sections/AboutSection';
-import ProjectsSection from '@/components/sections/ProjectsSection';
-import HireSection from '@/components/sections/HireSection';
+import Image from 'next/image';
+import { FileText, MapPin } from 'lucide-react';
+import ContactSection from '@/components/ContactSection';
+import BottomNinja from '@/components/portfolio/BottomNinja';
+import { About, Career } from '@/components/portfolio/Career';
+import PortraitLights from '@/components/portfolio/PortraitLights';
+import SelectedWork from '@/components/portfolio/SelectedWork';
+import { profile } from '@/data/profile';
+import styles from '@/components/portfolio/Portfolio.module.css';
 
-export const metadata: Metadata = {
-  title: 'Kiran Kumar | Software Guru',
-};
+const navLinks = [
+  { label: 'Work', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const results = [
+  { value: '15%', label: 'Smaller initial bundle', context: 'NEWGAS' },
+  { value: '~2s', label: 'Faster time to interactive', context: 'NEWGAS' },
+  { value: '2', label: 'VueVerse Connect talks', context: '2025 / 2026' },
+];
+
+const resumeHref = '/Kiran-Kumar-Challagiri-Resume.pdf';
+
+function Portrait() {
+  return (
+    <div className={styles.portraitDevice}>
+      <span className={styles.deviceFastener} aria-hidden="true" />
+      <span className={styles.deviceFastener} aria-hidden="true" />
+      <div className={styles.portraitPhoto}>
+        <Image
+          src="/images/kiran.webp"
+          alt="Kiran Kumar Challagiri"
+          fill
+          preload
+          sizes="(max-width: 650px) 72vw, (max-width: 1100px) 29vw, 300px"
+        />
+      </div>
+      <PortraitLights />
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
-    <main>
-      <section id="home" className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-indigo-300/80">
-          Full-Stack Engineer
-        </p>
-
-        <h1 className="bg-gradient-to-b from-white to-white/50 bg-clip-text text-5xl font-bold tracking-tighter text-transparent sm:text-7xl">
-          Kiran Kumar
-        </h1>
-
-        <p className="mt-6 max-w-md text-sm text-gray-400 sm:text-base">
-          A small universe of things I&apos;ve built, learned, and shipped.
-        </p>
-
-        <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            href="#about"
-            data-cursor="explore"
-            className="rounded-full bg-white px-10 py-4 text-sm font-bold text-black transition hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
-          >
-            About Me
+    <>
+      <a className={styles.skipLink} href="#main">Skip to content</a>
+      <header className={styles.header}>
+        <div className={`${styles.shell} ${styles.headerInner}`}>
+          <a className={styles.brand} href="#home" aria-label="Kiran Kumar Challagiri, home">
+            <span className={styles.brandMark} aria-hidden="true">KK<span>.</span></span>
+            <span className={styles.brandName}>Kiran Kumar</span>
           </a>
-          <a
-            href="#projects"
-            data-cursor="explore"
-            className="rounded-full border border-white/20 px-10 py-4 text-sm font-medium text-white backdrop-blur-xl transition hover:border-white/40 hover:bg-white/10"
-          >
-            Projects
-          </a>
-          <a
-            href="#hire"
-            data-cursor="explore"
-            className="rounded-full border border-white/20 px-10 py-4 text-sm font-medium text-white backdrop-blur-xl transition hover:border-white/40 hover:bg-white/10"
-          >
-            Hire Me
+          <nav className={styles.nav} aria-label="Main navigation">
+            {navLinks.map(({ href, label }) => <a key={href} href={href}>{label}</a>)}
+          </nav>
+          <a className={styles.headerResume} href={resumeHref} download>
+            <FileText size={16} aria-hidden="true" />
+            <span>Résumé</span>
           </a>
         </div>
+      </header>
 
-        <p className="mt-16 font-mono text-xs text-gray-600">
-          press <kbd className="rounded border border-white/10 px-1.5 py-0.5">⌘K</kbd> to explore
-        </p>
-      </section>
+      <main id="main" tabIndex={-1}>
+        <section className={styles.hero} id="home" aria-labelledby="intro-heading">
+          <div className={`${styles.shell} ${styles.heroInner}`}>
+            <div className={styles.heroCopy}>
+              <p className={styles.heroRole}>
+                <span aria-hidden="true" />
+                {profile.role}
+              </p>
+              <h1 id="intro-heading" className={styles.heroTitle}>
+                <span>Kiran Kumar</span>{' '}
+                <span>Challagiri<span className={styles.titleDot}>.</span></span>
+              </h1>
+              <p className={styles.heroDescription}>
+                At Blue Ray Automation, I build features for the NEWGAS admin and distributor
+                applications used in Ghana’s LPG supply chain. I also work across our internal
+                HR platform, from React screens to Node.js APIs.
+              </p>
+              <div className={styles.heroActions}>
+                <a className={styles.primaryButton} href="#projects">Explore my work</a>
+                <a className={styles.secondaryButton} href={resumeHref} download>
+                  <FileText size={17} aria-hidden="true" />
+                  Download résumé
+                </a>
+              </div>
+              <p className={styles.location}><MapPin size={15} aria-hidden="true" /> India</p>
+            </div>
+            <Portrait />
+          </div>
+        </section>
 
-      <AboutSection />
-      <ProjectsSection />
-      <HireSection />
-    </main>
+        <div className={styles.shell}>
+          <dl className={styles.results} aria-label="Selected achievements">
+            {results.map(({ value, label, context }) => (
+              <div key={label} className={styles.result}>
+                <dt>{label}</dt>
+                <dd className={styles.resultValue}>{value}</dd>
+                <dd className={styles.resultContext}>{context}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className={styles.section}>
+            <SelectedWork />
+          </div>
+          <div className={styles.section}>
+            <Career />
+          </div>
+          <div className={styles.section}>
+            <About />
+          </div>
+        </div>
+
+        <div id="hire">
+          <ContactSection />
+        </div>
+      </main>
+      <footer className={styles.footer}>
+        <div className={styles.shell}>
+          <span>{profile.name}</span>
+          <a href="#home">Back to top</a>
+        </div>
+      </footer>
+      <BottomNinja />
+    </>
   );
 }

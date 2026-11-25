@@ -1,38 +1,29 @@
 import { ImageResponse } from 'next/og';
 
-// Image metadata
-export const size = {
-    width: 32,
-    height: 32,
-};
+export const size = { width: 32, height: 32 };
 export const contentType = 'image/png';
 
-// Image generation
 export default function Icon() {
-    return new ImageResponse(
-        (
-            // ImageResponse JSX element
-            <div
-                style={{
-                    fontSize: 20,
-                    background: 'linear-gradient(to bottom right, #9333ea, #000000)', // Purple to Black
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    borderRadius: '8px', // Rounded corners (like an app icon)
-                    fontWeight: 800,
-                    border: '2px solid #ffffff30',
-                }}
-            >
-                KK
-            </div>
-        ),
-        // ImageResponse options
-        {
-            ...size,
-        }
-    );
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          borderRadius: 7,
+          background: '#171715',
+          color: '#f5f4f0',
+          fontWeight: 700,
+          fontSize: 15,
+          letterSpacing: '-1px',
+        }}
+      >
+        KK<span style={{ color: '#ff6958' }}>.</span>
+      </div>
+    ),
+    size,
+  );
 }

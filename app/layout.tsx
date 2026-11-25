@@ -1,120 +1,64 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import ChatWidget from "@/components/ChatWidget";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import { profile } from '@/data/profile';
+import './globals.css';
 
-// 1. Define your base URL (CRITICAL for SEO images to work)
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://softwareguru.in";
+const spaceGrotesk = localFont({
+  src: './fonts/space-grotesk.woff2',
+  variable: '--font-portfolio-sans',
+  weight: '400 700',
+  display: 'swap',
+});
+
+const plexMono = localFont({
+  src: './fonts/ibm-plex-mono.woff2',
+  variable: '--font-portfolio-mono',
+  weight: '500',
+  display: 'swap',
+});
+
+const title = `${profile.name} | ${profile.role}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-
-  // 2. The Title Google sees
-  title: {
-    default: "Kiran Kumar | Software Guru | Senior Full-Stack Engineer",
-    template: "%s | Kiran Kumar - Software Guru" // e.g., "Projects | Kiran Kumar"
-  },
-
-  // 3. The Description for Search Results
-  description: "Portfolio of Kiran Kumar, a Lead Full-Stack Engineer based in India specializing in scalable enterprise systems, React, Next.js, FastAPI, and Distributed Architecture. Known online as Software Guru.",
-
-  // 4. Keywords for ranking (Aggressively expanded for intent)
-  keywords: [
-    "Kiran Kumar",
-    "softwareguru",
-    "Software Guru",
-    "softwareguru.in",
-    "Kiran Kumar portfolio",
-    "software india",
-    "software engineer india",
-    "full stack engineer india",
-    "top react developer india",
-    "Next.js Developer India",
-    "freelance web developer bangalore",
-    "freelance software developer india",
-    "React Three Fiber Portfolio",
-    "Enterprise System Architect",
-    "Python developer India",
-    "FastAPI backend engineer",
-    "Kiran Kumar Software Engineer"
-  ],
-
-  // 5. Canonical URL to prevent duplicate content penalties
-  alternates: {
-    canonical: BASE_URL,
-  },
-
-  // 6. Creator Info
-  authors: [{ name: "Kiran Kumar", url: BASE_URL }],
-  creator: "Kiran Kumar",
-
-  // 7. How it looks on Facebook / LinkedIn / WhatsApp
+  metadataBase: new URL(profile.url),
+  title: { default: title, template: `%s | ${profile.name}` },
+  description: profile.description,
+  alternates: { canonical: '/' },
+  authors: [{ name: profile.name, url: profile.url }],
   openGraph: {
-    title: "Kiran Kumar | Software Guru | Engineer",
-    description: "Senior Full-Stack Engineer architecting scalable systems from India. Specializing in Next.js, React, and Python.",
-    url: BASE_URL,
-    siteName: "SoftwareGuru.in",
-    locale: "en_IN", // Localized to India
-    type: "profile",
+    title,
+    description: profile.description,
+    url: '/',
+    siteName: profile.name,
+    locale: 'en_IN',
+    type: 'profile',
   },
-
-  // 8. How it looks on Twitter/X
   twitter: {
-    card: "summary_large_image",
-    title: "Kiran Kumar | Software Guru",
-    description: "Check out my interactive 3D engineering portfolio.",
-    creator: "@kirankumar", // Replace with your handle if you have one
-  },
-
-  // 9. Robot instructions (Tell Google: "Yes, scan this!")
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    card: 'summary_large_image',
+    title,
+    description: profile.description,
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // Define JSON-LD Schema for Google Rich Snippets
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kiran Kumar",
-    "alternateName": "Software Guru",
-    "url": BASE_URL,
-    "jobTitle": "Senior Full-Stack Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "SoftwareGuru.in"
-    },
-    "nationality": "Indian",
-    "description": "Senior Full-Stack Engineer based in India, specializing in React, Next.js, and high-performance backend systems.",
-    "sameAs": [
-      "https://github.com/kirankumar3117",
-      "https://www.linkedin.com/in/kiran-kumar-17382ba1" // Ensure this is correct
-    ]
-  };
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  url: profile.url,
+  jobTitle: profile.role,
+  worksFor: { '@type': 'Organization', name: 'Blue Ray Automation' },
+  sameAs: [profile.github, profile.linkedin],
+};
 
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
+    <html lang="en" className={`${spaceGrotesk.variable} ${plexMono.variable}`}>
+      <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
-      </head>
-      <body className="antialiased bg-black text-white selection:bg-purple-500 selection:text-white overflow-x-hidden">
         {children}
-        <ChatWidget />
       </body>
     </html>
   );
